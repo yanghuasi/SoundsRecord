@@ -1435,7 +1435,7 @@ public class FileUtils {
 
             return new File(path);
         } else {
-            Log.i("FileUtils", "Uri Scheme:" + uri.getScheme());
+            Log.i("FileManager", "Uri Scheme:" + uri.getScheme());
         }
         return null;
     }

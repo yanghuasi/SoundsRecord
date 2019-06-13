@@ -16,12 +16,14 @@ import java.util.List;
 
 import seekbar.ggh.com.soundsrecord.R;
 import seekbar.ggh.com.soundsrecord.audio.AMRAudioRecorder;
+import seekbar.ggh.com.soundsrecord.audio.FileManager;
 import seekbar.ggh.com.soundsrecord.audio_sigle.FileUtils;
+
 
 public class ListActivity extends Activity {
     private RecyclerView rv;
     private ListAdapter adapter;
-
+    private List<DataEntity> sounds;
     @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,8 +35,18 @@ public class ListActivity extends Activity {
 //        AMRAudioRecorder amrAudioRecorder=new AMRAudioRecorder(uri);
 //        String path = Environment.getExternalStorageDirectory() + "/SoundRecorder"+amrAudioRecorder.getAudioFilePath();
 //        adapter = new ListAdapter(getFilesSizeModifyTime(uri));
-        List<DataEntity>sounds=new ArrayList<>();
-        sounds = seekbar.ggh.com.soundsrecord.audio.FileUtils.getFilePathFromFolder(uri);
+        sounds = new ArrayList<>();
+        List<String> filesPath = FileManager.getFilePathFromFolder(uri);
+        for (String path:filesPath){
+            DataEntity entity = new DataEntity();
+            entity.setFilePath(path);//设置路径
+           //你要设置adapter需要的元素才有的跑啊要不然就全注释掉
+            entity.setName(FileManager.extractFileName(path));
+//            entity.setTime(System.currentTimeMillis());
+//            entity.setLength( FileManager.getFileSize(path));
+            sounds.add(entity);
+        }
+
         adapter = new ListAdapter(sounds);
         rv.setAdapter(adapter);
 
@@ -42,12 +54,12 @@ public class ListActivity extends Activity {
     }
 //    public static List<DataEntity> getFilesSizeModifyTime(String folderPath){
 //        List<DataEntity> returnList = new ArrayList();
-//        List<String> filePathList = seekbar.ggh.com.soundsrecord.audio.FileUtils.getFilePathFromFolder(folderPath);
+//        List<String> filePathList = seekbar.ggh.com.soundsrecord.audio.FileManager.getFilePathFromFolder(folderPath);
 //        for(int i=0;i<filePathList.size();i++){
 //            List<String> tempList = new ArrayList();
 //            String filePath = (String)filePathList.get(i);
-//            String modifyTime = seekbar.ggh.com.soundsrecord.audio.FileUtils.fileModifyTime(filePath);
-//            Double fileSize = seekbar.ggh.com.soundsrecord.audio.FileUtils.getFileSize(filePath);
+//            String modifyTime = seekbar.ggh.com.soundsrecord.audio.FileManager.fileModifyTime(filePath);
+//            Double fileSize = seekbar.ggh.com.soundsrecord.audio.FileManager.getFileSize(filePath);
 //            tempList.add(filePath);
 //            tempList.add(modifyTime);
 //            tempList.add(fileSize);

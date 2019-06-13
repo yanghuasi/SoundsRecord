@@ -45,8 +45,8 @@ public class AMRAudioRecorder {
             this.fileDirectory += "/";
         }
 
-//        if (FileUtils.isFolderExist(fileDirectory)) {
-//            FileUtils.deleteAllFile(fileDirectory, false);
+//        if (FileManager.isFolderExist(fileDirectory)) {
+//            FileManager.deleteAllFile(fileDirectory, false);
 //        } else {
 //        }
 

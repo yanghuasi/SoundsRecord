@@ -7,7 +7,7 @@ public class DataEntity {
     private String mName; // file name
     private String mFilePath; //file path
     private int mId; //id in database
-    private int mLength; // length of recording in seconds
+    private double mLength; // length of recording in seconds
     private long mTime; // date/time of the recording
 
 
@@ -20,11 +20,11 @@ public class DataEntity {
         mFilePath = filePath;
     }
 
-    public int getLength() {
+    public double getLength() {
         return mLength;
     }
 
-    public void setLength(int length) {
+    public void setLength(double length) {
         mLength = length;
     }
 

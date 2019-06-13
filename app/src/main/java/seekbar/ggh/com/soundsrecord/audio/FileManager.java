@@ -23,8 +23,8 @@ import java.util.regex.Pattern;
  */
 @SuppressLint("SimpleDateFormat")
 @SuppressWarnings({ "rawtypes", "unchecked" })
-public final class FileUtils {
-	private FileUtils() {
+public final class FileManager {
+	private FileManager() {
 		
 	}
 
@@ -744,8 +744,8 @@ public final class FileUtils {
 		for(int i=0;i<filePathList.size();i++){
 			List tempList = new ArrayList();
 			String filePath = (String)filePathList.get(i);
-			String modifyTime = FileUtils.fileModifyTime(filePath);
-			Double fileSize = FileUtils.getFileSize(filePath);
+			String modifyTime = FileManager.fileModifyTime(filePath);
+			Double fileSize = FileManager.getFileSize(filePath);
 			tempList.add(filePath);
 			tempList.add(modifyTime);
 			tempList.add(fileSize);

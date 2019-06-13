@@ -9,7 +9,6 @@ import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Chronometer;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -17,11 +16,9 @@ import android.widget.Toast;
 
 import com.melnykov.fab.FloatingActionButton;
 
-import java.io.File;
-
 import seekbar.ggh.com.soundsrecord.R;
 import seekbar.ggh.com.soundsrecord.audio.AMRAudioRecorder;
-import seekbar.ggh.com.soundsrecord.audio.FileUtils;
+import seekbar.ggh.com.soundsrecord.audio.FileManager;
 
 public class SigleButtonActivity extends Activity {
 
@@ -130,10 +127,10 @@ public class SigleButtonActivity extends Activity {
                         try {
                             String newName = input.getText().toString().trim() + ".amr";
                             String path = mediaRecorder.getAudioFilePath();
-                            String oldName = FileUtils.extractFileName(path);
-//                            FileUtils.reNamePath(oldName,newName);
+                            String oldName = FileManager.extractFileName(path);
+//                            FileManager.reNamePath(oldName,newName);
                             seekbar.ggh.com.soundsrecord.audio_sigle.FileUtils.rename(mediaRecorder.getAudioFilePath(), newName);
-//                            FileUtils.getResourceStream(path);
+//                            FileManager.getResourceStream(path);
 
 
                         } catch (Exception e) {

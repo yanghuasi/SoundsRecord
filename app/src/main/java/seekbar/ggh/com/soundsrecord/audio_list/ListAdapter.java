@@ -19,8 +19,8 @@ public class ListAdapter extends BaseQuickAdapter<DataEntity, BaseViewHolder> {
     @Override
     protected void convert(BaseViewHolder helper, DataEntity item) {
         helper.setText (R.id.file_name_text,item.getName ());
-        helper.setText (R.id.file_length_text,item.getLength());
-        helper.setText (R.id.file_date_added_text, (int) item.getTime ());
+//        helper.setText (R.id.file_length_text, (int) item.getLength());
+//        helper.setText (R.id.file_date_added_text, (int) item.getTime ());
 //        ImageView imageView = helper.itemView.findViewById (R.id.iv_view);
 //        Glide.with (mContext).load (item.getView ()).into (imageView);
 
