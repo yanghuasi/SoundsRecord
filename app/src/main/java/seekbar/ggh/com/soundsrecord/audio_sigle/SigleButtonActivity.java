@@ -106,6 +106,7 @@ public class SigleButtonActivity extends Activity {
             mRecordingPrompt.setText(getString(R.string.record_prompt));
 
             mediaRecorder.stop();
+            mediaRecorder.reset();
             renameFileDialog();
 
         }

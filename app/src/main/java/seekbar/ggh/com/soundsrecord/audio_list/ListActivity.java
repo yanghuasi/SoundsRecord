@@ -4,10 +4,14 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.view.View;
+
+import com.chad.library.adapter.base.BaseQuickAdapter;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,6 +28,7 @@ public class ListActivity extends Activity {
     private RecyclerView rv;
     private ListAdapter adapter;
     private List<DataEntity> sounds;
+    private DataEntity entity;
     @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +43,7 @@ public class ListActivity extends Activity {
         sounds = new ArrayList<>();
         List<String> filesPath = FileManager.getFilePathFromFolder(uri);
         for (String path:filesPath){
-            DataEntity entity = new DataEntity();
+             entity = new DataEntity();
             entity.setFilePath(path);//设置路径
            //你要设置adapter需要的元素才有的跑啊要不然就全注释掉
             entity.setName(FileManager.extractFileName(path));
@@ -49,6 +54,15 @@ public class ListActivity extends Activity {
 
         adapter = new ListAdapter(sounds);
         rv.setAdapter(adapter);
+        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                PlaybackFragment playbackFragment =
+                        new PlaybackFragment().newInstance(sounds.get(position));
+//                    PlaybackFragment fg = new PlaybackFragment();
+                playbackFragment.show(getFragmentManager().beginTransaction(),"PlaybackFragment");
+            }
+        });
 
 
     }

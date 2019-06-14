@@ -130,9 +130,9 @@ public class AMRAudioRecorder {
 
     public void reset() {
         //删除所有文件
-        if (files.size() > 0) {
-            files.clear();
-        }
+//        if (files.size() > 0) {
+//            files.clear();
+//        }
         if (recorder != null) {
             recorder.reset();
         }

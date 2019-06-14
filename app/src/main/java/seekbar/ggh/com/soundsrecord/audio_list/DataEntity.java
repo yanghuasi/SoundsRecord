@@ -3,7 +3,9 @@ package seekbar.ggh.com.soundsrecord.audio_list;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class DataEntity {
+import java.util.ArrayList;
+
+public class DataEntity implements Parcelable {
     private String mName; // file name
     private String mFilePath; //file path
     private int mId; //id in database
@@ -11,6 +13,29 @@ public class DataEntity {
     private long mTime; // date/time of the recording
 
 
+    protected DataEntity(Parcel in) {
+        mName = in.readString();
+        mFilePath = in.readString();
+        mId = in.readInt();
+        mLength = in.readDouble();
+        mTime = in.readLong();
+    }
+
+    public static final Creator<DataEntity> CREATOR = new Creator<DataEntity>() {
+        @Override
+        public DataEntity createFromParcel(Parcel in) {
+            return new DataEntity(in);
+        }
+
+        @Override
+        public DataEntity[] newArray(int size) {
+            return new DataEntity[size];
+        }
+    };
+
+    public DataEntity() {
+
+    }
 
     public String getFilePath() {
         return mFilePath;
@@ -53,6 +78,17 @@ public class DataEntity {
     }
 
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
-
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(mName);
+        dest.writeString(mFilePath);
+        dest.writeInt(mId);
+        dest.writeDouble(mLength);
+        dest.writeLong(mTime);
+    }
 }
